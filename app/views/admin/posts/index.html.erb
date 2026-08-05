@@ -1,0 +1,42 @@
+<% content_for :title, page_title("Admin posts") %>
+
+<main class="admin-main">
+  <div class="admin-main__header">
+    <div>
+      <h1>Posts</h1>
+      <p>Create and edit published writing</p>
+    </div>
+    <%= link_to "New post", new_admin_post_path, class: "btn btn-primary" %>
+  </div>
+
+  <section class="panel">
+    <% if @posts.any? %>
+      <div class="table-responsive">
+        <table class="table mb-0 align-middle">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Topic</th>
+              <th>Status</th>
+              <th class="text-end">Views</th>
+              <th class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @posts.each do |post| %>
+              <tr>
+                <td><%= post.title %></td>
+                <td><%= post.topic_label %></td>
+                <td><%= post.status_label %></td>
+                <td class="text-end"><%= number_with_delimiter(post.view_count) %></td>
+                <td class="text-end"><%= render "admin/posts/actions", post: post, show_view: true %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <p class="empty">No posts yet. <%= link_to "Write one", new_admin_post_path %>.</p>
+    <% end %>
+  </section>
+</main>

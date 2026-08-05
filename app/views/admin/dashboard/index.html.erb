@@ -1,0 +1,140 @@
+<% content_for :title, page_title("Dashboard") %>
+
+<main class="admin-main">
+  <div class="admin-main__header">
+    <div>
+      <h1>Dashboard</h1>
+      <p>Views, publishing queue, and topic performance</p>
+    </div>
+    <%= link_to "New post", new_admin_post_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <p class="stat__label">Total views</p>
+      <p class="stat__value"><%= number_with_delimiter(@total_views) %></p>
+    </div>
+    <div class="stat">
+      <p class="stat__label">Posts</p>
+      <p class="stat__value"><%= @posts_count %></p>
+    </div>
+    <div class="stat">
+      <p class="stat__label">Topics</p>
+      <p class="stat__value"><%= @topics_count %></p>
+    </div>
+    <div class="stat">
+      <p class="stat__label">Top topic</p>
+      <p class="stat__value" style="font-size: 1.15rem;"><%= @views_by_topic.first&.first || "—" %></p>
+    </div>
+  </div>
+
+  <div class="dashboard-grid mb-4">
+    <section class="panel">
+      <h2 class="h6 mb-3">Drafts</h2>
+      <% if @draft_posts.any? %>
+        <div class="table-responsive">
+          <table class="table mb-0 align-middle">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Topic</th>
+                <th class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @draft_posts.each do |post| %>
+                <tr>
+                  <td><%= post.title %></td>
+                  <td><%= post.topic_label %></td>
+                  <td class="text-end"><%= render "admin/posts/actions", post: post %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <p class="empty mb-0">No drafts.</p>
+      <% end %>
+    </section>
+
+    <section class="panel">
+      <h2 class="h6 mb-3">Scheduled posts</h2>
+      <% if @scheduled_posts.any? %>
+        <div class="table-responsive">
+          <table class="table mb-0 align-middle">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Topic</th>
+                <th>Scheduled for</th>
+                <th class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @scheduled_posts.each do |post| %>
+                <tr>
+                  <td><%= post.title %></td>
+                  <td><%= post.topic_label %></td>
+                  <td><%= l(post.published_at, format: :long) %></td>
+                  <td class="text-end"><%= render "admin/posts/actions", post: post %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <p class="empty mb-0">No scheduled posts.</p>
+      <% end %>
+    </section>
+  </div>
+
+  <div class="dashboard-grid">
+    <section class="panel">
+      <h2 class="h6 mb-3">Views by topic</h2>
+      <% if @views_by_topic.any? %>
+        <% max_views = [ @views_by_topic.map { |_, v| v.to_i }.max, 1 ].max %>
+        <% @views_by_topic.each do |topic, views| %>
+          <div class="topic-row">
+            <strong><%= topic %></strong>
+            <span class="text-muted"><%= number_with_delimiter(views.to_i) %></span>
+            <div class="topic-row__bar">
+              <div class="topic-row__fill" style="width: <%= (views.to_i * 100.0 / max_views).round %>%"></div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="empty">No topic data yet.</p>
+      <% end %>
+    </section>
+
+    <section class="panel">
+      <h2 class="h6 mb-3">Top posts</h2>
+      <% if @top_posts.any? %>
+        <div class="table-responsive">
+          <table class="table mb-0 align-middle">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Topic</th>
+                <th class="text-end">Views</th>
+                <th class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @top_posts.each do |post| %>
+                <tr>
+                  <td><%= link_to post.title, edit_admin_post_path(post) %></td>
+                  <td><%= post.topic_label %></td>
+                  <td class="text-end"><%= number_with_delimiter(post.view_count) %></td>
+                  <td class="text-end"><%= render "admin/posts/actions", post: post %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <p class="empty">No posts yet.</p>
+      <% end %>
+    </section>
+  </div>
+</main>

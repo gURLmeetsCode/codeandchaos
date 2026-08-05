@@ -1,0 +1,35 @@
+<%= form_with(model: [:admin, post]) do |form| %>
+  <% if post.errors.any? %>
+    <div class="alert alert-danger">
+      <strong><%= pluralize(post.errors.count, "error") %> blocked saving:</strong>
+      <ul class="mb-0 mt-2">
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", placeholder: "Post title" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :topic, class: "form-label" %>
+    <%= form.text_field :topic, class: "form-control", placeholder: "e.g. Rails, Career" %>
+  </div>
+
+  <div class="mb-4" data-controller="markdown-editor">
+    <%= form.label :body, "Body (Markdown)", class: "form-label" %>
+    <%= form.text_area :body, class: "form-control", rows: 16, data: { markdown_editor_target: "input" } %>
+    <div class="form-text">Use Markdown. Wrap code in triple backticks with a language, e.g. ```ruby</div>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :published_at %>
+    <%= form.datetime_select :published_at, include_blank: true%>
+  </div>
+
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>

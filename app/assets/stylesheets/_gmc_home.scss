@@ -1,0 +1,220 @@
+.home-layout {
+
+  width: min(var(--gmc-page),
+      calc(100% - (var(--space-3) * 2)));
+
+  margin-inline: auto;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 7fr) minmax(18rem, 3fr);
+
+  gap: 5rem;
+
+  padding: 2rem 0 6rem;
+}
+
+
+.home-posts {
+  min-width: 0;
+}
+
+
+.home-posts__title {
+  margin: 0 0 1.5rem;
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--gmc-muted);
+}
+
+
+.home-sidebar {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2.5rem;
+
+}
+
+
+.sidebar-section {
+
+  padding-bottom: 2rem;
+
+  border-bottom: 1px solid var(--gmc-line);
+
+}
+
+
+.sidebar-section:last-child {
+
+  border-bottom: none;
+
+}
+
+
+.sidebar-title {
+
+  margin: 0 0 1rem;
+
+  font-size: .85rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: .08em;
+
+  color: var(--gmc-muted);
+
+}
+
+
+.sidebar-about__intro {
+
+  margin: 0 0 .75rem;
+
+  color: var(--gmc-text);
+
+  font-size: 1rem;
+
+  line-height: 1.6;
+
+}
+
+
+.sidebar-about__text {
+
+  margin: 0 0 1.25rem;
+
+  color: var(--gmc-muted);
+
+  font-size: 1rem;
+
+  line-height: 1.8;
+
+}
+
+
+.sidebar-about .text-link {
+
+  margin-top: 0;
+
+}
+
+
+.sidebar-reading .text-link {
+
+  margin-top: 1.25rem;
+
+}
+
+
+.reading-list {
+
+  list-style: none;
+
+  margin: 0;
+
+  padding: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 1.25rem;
+
+}
+
+
+.reading-list__link {
+
+  display: grid;
+
+  grid-template-columns: 3.5rem 1fr;
+
+  gap: .875rem;
+
+  align-items: start;
+
+  color: inherit;
+
+  text-decoration: none;
+
+}
+
+
+.reading-list__link:hover .reading-list__title {
+
+  color: var(--gmc-accent);
+
+}
+
+
+.reading-list__cover-wrap {
+
+  width: 3.5rem;
+
+  aspect-ratio: 2 / 3;
+
+  border-radius: .25rem;
+
+  overflow: hidden;
+
+  border: 1px solid var(--gmc-line);
+
+  background: var(--gmc-surface);
+
+}
+
+
+.reading-list__cover {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+}
+
+
+.reading-list__details {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: .25rem;
+
+  min-width: 0;
+
+}
+
+
+.reading-list__title {
+
+  font-size: .95rem;
+
+  font-weight: 600;
+
+  line-height: 1.4;
+
+  color: var(--gmc-text);
+
+}
+
+
+.reading-list__author {
+
+  font-size: .875rem;
+
+  line-height: 1.5;
+
+  color: var(--gmc-muted);
+
+}

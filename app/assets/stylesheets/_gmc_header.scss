@@ -1,0 +1,86 @@
+.site-header {
+
+  background: var(--gmc-bg);
+
+  border-bottom: 1px solid var(--gmc-line);
+
+}
+
+
+.site-header__inner,
+.admin-header__inner {
+
+  width: min(var(--gmc-page),
+      calc(100% - (var(--space-3) * 2)));
+
+  margin-inline: auto;
+
+  min-height: 4rem;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+
+.brand {
+
+  color: var(--gmc-text);
+
+  font-size: 1.35rem;
+
+  font-weight: 800;
+
+  letter-spacing: -.05em;
+}
+
+
+.brand__accent {
+
+  color: var(--gmc-accent);
+
+}
+
+
+.nav-links {
+
+  display: flex;
+
+  gap: 2rem;
+
+  list-style: none;
+
+  padding: 0;
+
+  margin: 0;
+}
+
+
+.nav-links a {
+
+  color: var(--gmc-muted);
+
+  font-size: .95rem;
+
+  text-decoration: none;
+
+}
+
+
+.nav-links a:hover {
+
+  color: var(--gmc-text);
+
+}
+
+
+.nav-links a.active {
+
+  color: var(--gmc-accent);
+
+  font-weight: 600;
+
+}

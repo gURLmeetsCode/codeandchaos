@@ -1,0 +1,125 @@
+<% content_for :title, page_title("Blog") %>
+
+<section class="hero page">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>Notes on thinking, learning, and better systems — for work and life.</h1>
+      <p>Code, productivity, career, self-improvement — and whatever else I'm figuring out in public.</p>
+      <%= link_to "About me →", about_path, class: "text-link" %>
+    </div>
+    <%= image_tag "hero1.png",
+        alt: "Illustration of coding and software development", class: "hero-image" %>
+  </div>
+</section>
+
+
+
+
+
+<div class="home-layout">
+
+  <main class="home-posts" aria-label="Blog posts">
+
+    <h2 class="home-posts__title">Latest notes</h2>
+
+    <% if @posts.any? %>
+
+      <ul class="post-list">
+
+        <% @posts.each do |post| %>
+
+          <li class="post-list__item">
+
+            <%= link_to post, class: "post-list__link" do %>
+
+              <h2 class="post-list__title">
+                <%= post.title %>
+              </h2>
+
+
+              <p class="post-list__excerpt">
+                This is a summary of the post you are going to read
+                <%# <%= post.excerpt %> %>
+              </p>
+
+
+              <div class="post-list__meta">
+
+                <span
+                  class="topic"
+                  style="--topic-color: <%= topic_color(post.topic_label) %>"
+                >
+                  <%= post.topic_label %>
+                </span>
+
+
+                <span class="post-list__reading-time">
+                  <%= reading_time_label(post) %>
+                </span>
+
+
+                <time datetime="<%= post.created_at.iso8601 %>">
+                  <%= post.created_at.strftime("%b %-d, %Y") %>
+                </time>
+
+              </div>
+
+            <% end %>
+
+          </li>
+
+        <% end %>
+
+      </ul>
+
+    <% else %>
+
+      <p class="empty">
+        No posts yet.
+      </p>
+
+    <% end %>
+
+  </main>
+
+
+  <aside class="home-sidebar">
+
+
+    <section class="sidebar-section">
+
+      <h2 class="sidebar-title">
+        Topics
+      </h2>
+
+      <%= render "topics" %>
+
+    </section>
+
+
+    <section class="sidebar-section sidebar-about">
+
+      <h2 class="sidebar-title">
+        About
+      </h2>
+
+      <p class="sidebar-about__intro">
+        Hey, I'm gURL.
+      </p>
+
+      <p class="sidebar-about__text">
+        I write code for work. I write here to think out loud —
+        about learning, productivity, and the slow work of getting better.
+      </p>
+
+      <%= link_to "More about me →", about_path, class: "text-link" %>
+
+    </section>
+
+
+    <%= render "reading_list" %>
+
+  </aside>
+
+
+</div>

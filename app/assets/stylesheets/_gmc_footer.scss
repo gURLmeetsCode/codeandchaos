@@ -1,0 +1,54 @@
+.site-footer {
+
+  margin-top: 6rem;
+
+  border-top: 1px solid var(--gmc-line);
+
+  padding: 4rem 0;
+
+}
+
+
+.site-footer__inner {
+
+  width: min(var(--gmc-page),
+      calc(100% - (var(--space-3) * 2)));
+
+  margin-inline: auto;
+
+  display: grid;
+
+  grid-template-columns: 2fr 1fr 1fr;
+
+  gap: 3rem;
+
+}
+
+
+.footer-brand {
+
+  font-size: 1.3rem;
+
+  font-weight: 700;
+
+}
+
+
+.footer-nav {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: .5rem;
+
+}
+
+
+.footer-meta {
+
+  color: var(--gmc-muted);
+
+  font-size: .9rem;
+
+}

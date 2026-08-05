@@ -1,0 +1,23 @@
+<header class="admin-header">
+  <div class="admin-header__inner">
+    <%= link_to admin_dashboard_path, class: "brand" do %>
+      <%= brand_mark(suffix: "Admin") %>
+    <% end %>
+
+    <ul class="nav-links">
+      <% if user_signed_in? %>
+        <li><%= link_to "Dashboard", admin_dashboard_path, class: ("active" if controller_name == "dashboard") %></li>
+        <li><%= link_to "Posts", admin_posts_path, class: ("active" if controller_name == "posts") %></li>
+        <li><%= link_to "New post", new_admin_post_path %></li>
+        <li><%= link_to "View site", root_path %></li>
+        <li><%= link_to "Account", edit_user_registration_path %></li>
+        <li>
+          <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-sm btn-outline-dark" %>
+        </li>
+      <% else %>
+        <li><%= link_to "View site", root_path %></li>
+        <li><%= link_to "Sign in", new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</header>

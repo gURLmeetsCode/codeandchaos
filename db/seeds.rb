@@ -1,9 +1,36 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# Create your admin account (the only user who can publish).
+# Change the email/password before deploying.
+admin = User.find_or_initialize_by(email: "admin@example.com")
+admin.password = "password"
+admin.password_confirmation = "password"
+admin.role = :admin
+admin.save!
+
+samples = [
+  {
+    title: "Welcome to the blog",
+    body: "This is your first post. Sign in as admin to edit or add more.",
+    topic: "Meta",
+    view_count: 12
+  },
+  {
+    title: "Shipping a Rails blog without overbuilding",
+    body: "Keep public reads simple, put writes behind admin, and measure what topics actually get read.",
+    topic: "Rails",
+    view_count: 48
+  },
+  {
+    title: "What I look for when reviewing my own PRs",
+    body: "Clarity beats cleverness. Name things for the next reader. Delete the code you cannot defend.",
+    topic: "Career",
+    view_count: 31
+  }
+]
+
+samples.each do |attrs|
+  post = Post.find_or_initialize_by(title: attrs[:title])
+  post.assign_attributes(attrs)
+  post.save!
+end
+
+puts "Seeded admin (admin@example.com / password) and sample posts."

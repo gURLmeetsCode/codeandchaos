@@ -63,3 +63,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "devise", "~> 5.0"
+gem "commonmarker", "~> 2.0"
+gem "rouge", "~> 4.0"

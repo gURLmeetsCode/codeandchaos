@@ -1,0 +1,18 @@
+<% content_for :title, page_title(@post.title) %>
+
+<article class="page article">
+  <div class="article__inner">
+    <%= link_to "← All posts", posts_path, class: "article__back" %>
+
+    <h1><%= @post.title %></h1>
+    <p class="article__meta">
+      <span class="topic"><%= @post.topic_label %></span>
+      <span class="post-list__reading-time"><%= reading_time_label(@post) %></span>
+      <time datetime="<%= @post.created_at.iso8601 %>"><%= @post.created_at.strftime("%b %-d, %Y") %></time>
+    </p>
+
+    <div class="article__body markdown-body">
+      <%= render_markdown(@post.body) %>
+    </div>
+  </div>
+</article>

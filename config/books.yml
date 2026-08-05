@@ -1,0 +1,19 @@
+# Books shown in the homepage sidebar under "Currently reading".
+# Update this file whenever you start or finish a book.
+#
+# cover: filename inside app/assets/images/books/ (recommended)
+# cover_url: optional external image URL (used if cover is blank)
+# url: link to the book on Goodreads (or anywhere)
+
+goodreads_profile: https://www.goodreads.com/user/show/122095114
+
+books:
+  - title: "The Pragmatic Programmer"
+    author: "David Thomas & Andrew Hunt"
+    cover_url: https://covers.openlibrary.org/b/isbn/9780135957059-M.jpg
+    url: https://www.goodreads.com/book/show/4099.The_Pragmatic_Programmer
+
+  - title: "Working Effectively with Legacy Code"
+    author: "Michael Feathers"
+    cover_url: https://covers.openlibrary.org/b/isbn/9780131177055-M.jpg
+    url: https://www.goodreads.com/book/show/44919.Working_Effectively_with_Legacy_Code

@@ -1,0 +1,21 @@
+<div class="d-inline-flex gap-2 flex-wrap justify-content-end">
+  <% if local_assigns.fetch(:show_view, false) %>
+    <%= link_to "View", admin_post_path(post), class: "btn btn-sm btn-outline-dark" %>
+  <% end %>
+
+  <%= link_to "Edit", edit_admin_post_path(post), class: "btn btn-sm btn-outline-dark" %>
+
+  <% if post.draft? || post.scheduled? %>
+    <%= button_to post.scheduled? ? "Publish now" : "Publish",
+        publish_admin_post_path(post),
+        method: :patch,
+        class: "btn btn-sm btn-primary",
+        form: { data: { turbo_confirm: publish_post_confirm(post) } } %>
+  <% end %>
+
+  <%= button_to "Delete",
+      admin_post_path(post),
+      method: :delete,
+      class: "btn btn-sm btn-outline-danger",
+      form: { data: { turbo_confirm: delete_post_confirm(post) } } %>
+</div>
