@@ -22,7 +22,7 @@
 
   <div class="mb-4" data-controller="markdown-editor">
     <%= form.label :body, "Body (Markdown)", class: "form-label" %>
-    <%= form.text_area :body, class: "form-control", rows: 16, data: { markdown_editor_target: "input" } %>
+    <%= form.text_area :body, rows: 16, data: { markdown_editor_target: "input" } %>
     <div class="form-text">Use Markdown. Wrap code in triple backticks with a language, e.g. ```ruby</div>
   </div>
 

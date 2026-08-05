@@ -9,6 +9,7 @@ export default class extends Controller {
       element: this.inputTarget,
       spellChecker: false,
       autofocus: false,
+      autoDownloadFontAwesome: false,
       status: [ "lines", "words" ],
       toolbar: [
         "bold", "italic", "heading", "|",
@@ -17,9 +18,16 @@ export default class extends Controller {
         "preview", "guide"
       ]
     })
+
+    this.syncOnSubmit = (event) => {
+      this.editor.codemirror.save()
+    }
+    this.element.closest("form")?.addEventListener("submit", this.syncOnSubmit)
   }
 
   disconnect() {
+    this.element.closest("form")?.removeEventListener("submit", this.syncOnSubmit)
+
     if (this.editor) {
       this.editor.toTextArea()
       this.editor = null

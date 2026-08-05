@@ -5,7 +5,7 @@ class Post < ApplicationRecord
 
   before_validation :normalize_topic
 
-  scope :newest_first, -> { order(published_at: :desc, updated_at: desc) }
+  scope :newest_first, -> { order(published_at: :desc, updated_at: :desc) }
   scope :by_views, -> { order(view_count: :desc) }
   scope :draft, -> { where(published_at: nil) }
   scope :published, -> { where("published_at <= ?", Time.current) }

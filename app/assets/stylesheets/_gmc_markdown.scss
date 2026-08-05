@@ -1,4 +1,9 @@
-@import "easymde/dist/easymde.min.css";
+@use "sass:meta";
+
+@include meta.load-css("easymde/dist/easymde.min");
+
+$fa-font-path: "./fonts";
+@import "font-awesome/scss/font-awesome";
 
 .markdown-body {
   .highlight {
@@ -59,10 +64,27 @@
   }
 }
 
-.admin-panel {
+.admin-main .panel {
   .EasyMDEContainer .editor-toolbar {
     border-color: var(--gmc-line);
     background: var(--gmc-surface);
+    border-radius: $border-radius $border-radius 0 0;
+    opacity: 1;
+
+    button {
+      color: var(--gmc-text) !important;
+
+      &:hover,
+      &.active {
+        background: var(--gmc-bg);
+        border-color: var(--gmc-line);
+      }
+    }
+
+    i.separator {
+      border-left-color: var(--gmc-line);
+      border-right-color: var(--gmc-line);
+    }
   }
 
   .EasyMDEContainer .CodeMirror {
@@ -70,10 +92,18 @@
     background: #fff;
     color: var(--gmc-text);
     min-height: 20rem;
+    border-radius: 0 0 $border-radius $border-radius;
   }
 
   .editor-preview,
   .editor-preview-side {
     background: #fff;
+    color: var(--gmc-text);
+    padding: 1rem;
+  }
+
+  .editor-statusbar {
+    color: var(--gmc-muted);
+    border-color: var(--gmc-line);
   }
 }
