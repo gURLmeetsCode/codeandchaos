@@ -13,7 +13,7 @@ books:
     cover_url: https://covers.openlibrary.org/b/isbn/9780135957059-M.jpg
     url: https://www.goodreads.com/book/show/4099.The_Pragmatic_Programmer
 
-  - title: "Working Effectively with Legacy Code"
-    author: "Michael Feathers"
-    cover_url: https://covers.openlibrary.org/b/isbn/9780131177055-M.jpg
-    url: https://www.goodreads.com/book/show/44919.Working_Effectively_with_Legacy_Code
+  - title: "Really Good, Actually"
+    author: "Monica Heisey"
+    cover_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsmGAkEI1IsjXJpEsnpar9YkzOIQF19JC1LSV7YbdGaQ&s=10
+    url: https://www.goodreads.com/en/book/show/60877616-really-good-actually

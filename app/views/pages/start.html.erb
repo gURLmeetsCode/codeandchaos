@@ -1,0 +1,68 @@
+<% content_for :title, page_title("New here") %>
+
+<article class="start page">
+  <div class="start__inner">
+    <%= link_to "← Back to notes", root_path, class: "article__back" %>
+
+    <header class="start__header">
+      <h1>New here? Glad you stopped by.</h1>
+      <p class="start__tagline"><%= @tagline %></p>
+      <p class="start__for">
+        Notes on code, productivity, career, and self-improvement —
+        written while failing in public.
+      </p>
+    </header>
+
+    <% if @topics.any? %>
+      <section class="start__section" aria-labelledby="start-topics-heading">
+        <h2 id="start-topics-heading" class="start__label">Pick a topic</h2>
+
+        <ul class="start-topics">
+          <% @topics.each do |name, count| %>
+            <li>
+              <%= link_to topic_filter_path(name), class: "start-topic" do %>
+                <span
+                  class="topic"
+                  style="--topic-color: <%= topic_color(name) %>"
+                >
+                  <%= name %>
+                </span>
+                <span class="start-topic__count">
+                  <%= count %> <%= "note".pluralize(count) %>
+                </span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+
+        <p class="start__aside">
+          By the way — I write frequently. Don't see a topic that fits?
+          Check back soon; there's usually something new on my brain.
+        </p>
+      </section>
+    <% else %>
+      <section class="start__section">
+        <p class="start__aside">
+          By the way — I write frequently. Check back soon to see what's new on my brain.
+        </p>
+      </section>
+    <% end %>
+
+    <% if @starter_posts.any? %>
+      <section class="start__section" aria-labelledby="start-notes-heading">
+        <h2 id="start-notes-heading" class="start__label">Or start with a note</h2>
+
+        <div class="start-cards">
+          <% @starter_posts.each do |entry| %>
+            <%= render "start_post_card", entry: entry %>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+
+    <nav class="start__footer" aria-label="Next steps">
+      <%= link_to "Browse all notes", root_path, class: "text-link" %>
+      <%= link_to "About me", about_path, class: "text-link" %>
+    </nav>
+  </div>
+</article>

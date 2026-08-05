@@ -6,7 +6,14 @@
 
     <h1><%= @post.title %></h1>
     <p class="article__meta">
-      <span class="topic"><%= @post.topic_label %></span>
+      <% if @post.topic.present? %>
+        <%= link_to @post.topic_label,
+            topic_filter_path(@post.topic),
+            class: "topic",
+            style: "--topic-color: #{topic_color(@post.topic_label)}" %>
+      <% else %>
+        <span class="topic"><%= @post.topic_label %></span>
+      <% end %>
       <span class="post-list__reading-time"><%= reading_time_label(@post) %></span>
       <time datetime="<%= @post.created_at.iso8601 %>"><%= @post.created_at.strftime("%b %-d, %Y") %></time>
     </p>

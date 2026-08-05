@@ -10,6 +10,12 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should filter index by topic" do
+    get posts_url(topic: "Rails")
+    assert_response :success
+    assert_select ".home-posts__title", text: /Rails/
+  end
+
   test "should show post" do
     get post_url(@post)
     assert_response :success

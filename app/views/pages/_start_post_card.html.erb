@@ -1,0 +1,18 @@
+<%= link_to entry.post, class: "start-card" do %>
+  <div class="start-card__meta">
+    <% if entry.post.topic.present? %>
+      <span
+        class="topic"
+        style="--topic-color: <%= topic_color(entry.post.topic_label) %>"
+      >
+        <%= entry.post.topic_label %>
+      </span>
+    <% end %>
+
+    <span class="start-card__time"><%= reading_time_label(entry.post) %></span>
+  </div>
+
+  <h3 class="start-card__title"><%= entry.post.title %></h3>
+
+  <p class="start-card__hook"><%= StartHere.hook_for(entry) %></p>
+<% end %>

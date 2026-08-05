@@ -5,9 +5,11 @@ one:
   body: MyText
   topic: Rails
   view_count: 3
+  published_at: <%= 2.days.ago.iso8601 %>
 
 two:
   title: MyString
   body: MyText
   topic: Career
   view_count: 1
+  published_at: <%= 1.day.ago.iso8601 %>

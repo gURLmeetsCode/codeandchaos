@@ -1,21 +1,21 @@
 <ul class="topic-list">
 
-  <% @topics&.each do |topic| %>
+  <% @topics&.each do |name, count| %>
 
     <li class="topic-row">
+      <%= link_to topic_filter_path(name),
+          class: [ "topic-row__link", ("active" if topic_filter_active?(name)) ].compact.join(" ") do %>
+        <span
+          class="topic"
+          style="--topic-color: <%= topic_color(name) %>"
+        >
+          <%= name %>
+        </span>
 
-      <span
-        class="topic"
-        style="--topic-color: <%= topic_color(topic.name) %>"
-      >
-        <%= topic.name %>
-      </span>
-
-
-      <span class="topic-count">
-        <%= topic.count %>
-      </span>
-
+        <span class="topic-count">
+          <%= count %>
+        </span>
+      <% end %>
     </li>
 
   <% end %>

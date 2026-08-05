@@ -5,22 +5,27 @@
     <div class="hero-text">
       <h1>Notes on thinking, learning, and better systems — for work and life.</h1>
       <p>Code, productivity, career, self-improvement — and whatever else I'm figuring out in public.</p>
-      <%= link_to "About me →", about_path, class: "text-link" %>
+      <%= link_to "Start here →", start_path, class: "text-link" %>
     </div>
-    <%= image_tag "hero1.png",
+    <%= image_tag "hero3.png",
         alt: "Illustration of coding and software development", class: "hero-image" %>
   </div>
 </section>
-
-
-
-
 
 <div class="home-layout">
 
   <main class="home-posts" aria-label="Blog posts">
 
-    <h2 class="home-posts__title">Latest notes</h2>
+    <% if @current_topic.present? %>
+      <div class="home-posts__header">
+        <h2 class="home-posts__title">
+          Notes on <%= @current_topic %>
+        </h2>
+        <%= link_to "All notes", root_path, class: "home-posts__clear" %>
+      </div>
+    <% else %>
+      <h2 class="home-posts__title">Latest notes</h2>
+    <% end %>
 
     <% if @posts.any? %>
 
@@ -42,29 +47,35 @@
                 <%# <%= post.excerpt %> %>
               </p>
 
+            <% end %>
 
-              <div class="post-list__meta">
+            <div class="post-list__meta">
 
+              <% if post.topic.present? %>
+                <%= link_to post.topic_label,
+                    topic_filter_path(post.topic),
+                    class: "topic",
+                    style: "--topic-color: #{topic_color(post.topic_label)}" %>
+              <% else %>
                 <span
                   class="topic"
                   style="--topic-color: <%= topic_color(post.topic_label) %>"
                 >
                   <%= post.topic_label %>
                 </span>
+              <% end %>
 
 
-                <span class="post-list__reading-time">
-                  <%= reading_time_label(post) %>
-                </span>
+              <span class="post-list__reading-time">
+                <%= reading_time_label(post) %>
+              </span>
 
 
-                <time datetime="<%= post.created_at.iso8601 %>">
-                  <%= post.created_at.strftime("%b %-d, %Y") %>
-                </time>
+              <time datetime="<%= post.created_at.iso8601 %>">
+                <%= post.created_at.strftime("%b %-d, %Y") %>
+              </time>
 
-              </div>
-
-            <% end %>
+            </div>
 
           </li>
 
@@ -75,7 +86,12 @@
     <% else %>
 
       <p class="empty">
-        No posts yet.
+        <% if @current_topic.present? %>
+          No published notes in <%= @current_topic %> yet.
+          <%= link_to "Browse all notes", root_path, class: "text-link" %>
+        <% else %>
+          No posts yet.
+        <% end %>
       </p>
 
     <% end %>

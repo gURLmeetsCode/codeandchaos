@@ -7,9 +7,18 @@ class Post < ApplicationRecord
 
   scope :newest_first, -> { order(published_at: :desc, updated_at: :desc) }
   scope :by_views, -> { order(view_count: :desc) }
+  scope :by_topic, ->(topic) { topic.present? ? where(topic: topic) : all }
   scope :draft, -> { where(published_at: nil) }
   scope :published, -> { where("published_at <= ?", Time.current) }
   scope :scheduled, -> { where("published_at > ?", Time.current) }
+
+  def self.topic_counts
+    published
+      .where.not(topic: [ nil, "" ])
+      .group(:topic)
+      .count
+      .sort_by { |_, count| -count }
+  end
 
   def topic_label
     topic.presence || "Untagged"

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :posts, only: [ :index, :show ]
 
   get "about", to: "pages#about"
+  get "start", to: "pages#start"
 
   namespace :admin do
     root to: "entrypoints#show"

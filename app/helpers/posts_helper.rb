@@ -15,6 +15,14 @@ module PostsHelper
     "#{post.reading_time_minutes} min read"
   end
 
+  def topic_filter_path(topic)
+    root_path(topic: topic)
+  end
+
+  def topic_filter_active?(topic)
+    params[:topic].to_s == topic.to_s
+  end
+
   def render_markdown(text)
     MarkdownRenderer.render(text).html_safe
   end

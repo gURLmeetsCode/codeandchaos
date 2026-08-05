@@ -30,6 +30,7 @@ samples = [
 samples.each do |attrs|
   post = Post.find_or_initialize_by(title: attrs[:title])
   post.assign_attributes(attrs)
+  post.published_at ||= Time.current
   post.save!
 end
 

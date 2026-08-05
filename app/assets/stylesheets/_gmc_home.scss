@@ -29,6 +29,29 @@
   color: var(--gmc-muted);
 }
 
+.home-posts__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.home-posts__header .home-posts__title {
+  margin: 0;
+}
+
+.home-posts__clear {
+  color: var(--gmc-accent);
+  font-size: .9rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.home-posts__clear:hover {
+  color: var(--gmc-text);
+}
+
 
 .home-sidebar {
 

@@ -146,6 +146,28 @@
 
 }
 
+.topic-row__link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.topic-row__link:hover {
+  color: var(--gmc-text);
+}
+
+.topic-row__link.active {
+  color: var(--gmc-accent);
+  font-weight: 600;
+}
+
+a.topic:hover {
+  color: var(--gmc-text);
+}
+
 
 .topic-count {
 

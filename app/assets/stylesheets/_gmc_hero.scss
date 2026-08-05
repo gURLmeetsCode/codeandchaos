@@ -30,30 +30,29 @@
 .hero-content {
   display: flex;
   align-items: center;
-  gap: 3rem; // Adjust spacing between text and image
+  gap: 4rem;
 }
 
 .hero-text {
-  flex: 0 1 auto; // Text takes natural width
+  flex: 1 1 0;
+  min-width: 0;
 }
-
-
 
 .hero-image {
-  flex: 20 5 auto; // Image stays fixed size
-  width: 300px; // Adjust as needed
+  flex: 0 0 auto;
+  width: clamp(22rem, 42vw, 37rem);
+  max-width: 100%;
   height: auto;
-  border-radius: 8px; // Optional
+  border-radius: 8px;
 }
 
-// Optional: responsive layout for smaller screens
 @media (max-width: 768px) {
   .hero-content {
     flex-direction: column;
+    gap: 2.5rem;
   }
 
   .hero-image {
-    width: 100%;
-    max-width: 400px;
+    width: min(100%, 28rem);
   }
 }

@@ -29,6 +29,13 @@ module ApplicationHelper
     "Are you sure you want to delete \"#{post.title}\"? This action cannot be undone."
   end
 
+  def nav_link_active?(controller, action: nil)
+    return unless controller_name == controller.to_s
+    return "active" if action.nil?
+
+    "active" if action_name == action.to_s
+  end
+
   def publish_post_confirm(post)
     if post.scheduled?
       "Publish \"#{post.title}\" now? It will go live immediately instead of #{l(post.published_at, format: :long)}."

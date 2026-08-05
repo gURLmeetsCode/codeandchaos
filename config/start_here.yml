@@ -1,0 +1,8 @@
+# Optional one-line orient for /start.
+tagline: "Pick a topic below, or read a note to get the vibe."
+
+# Optional curated starters — titles must match published posts exactly.
+# Any gaps are filled with your most recent notes (max 3 total).
+featured_posts:
+  - title: "Test post"
+    why: "A quick taste of what shows up here."

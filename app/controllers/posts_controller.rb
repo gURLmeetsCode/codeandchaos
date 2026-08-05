@@ -2,7 +2,9 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show ]
 
   def index
-    @posts = Post.published.newest_first
+    @current_topic = params[:topic].to_s.strip.presence
+    @posts = Post.published.by_topic(@current_topic).newest_first
+    @topics = Post.topic_counts
   end
 
   def show
