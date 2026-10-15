@@ -66,4 +66,4 @@ end
 
 gem "devise", "~> 5.0"
 gem "commonmarker", "~> 2.0"
-gem "rouge", "~> 4.0"
+gem "rouge", "~> 5.0"
